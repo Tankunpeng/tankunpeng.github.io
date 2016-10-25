@@ -4,10 +4,12 @@
 	<meta charset="UTF-8">
 	<title>IFE 项目展示</title>
 	<script>
+		document.write("<ul> 任务列表")
 		for(var i = 1; i<24; i++){
 			var name = "task_" + i;
-			document.write("<a href='"+name+"'/>"+name+"</a>")	
+			document.write("<li><a href='"+name+"'/>"+name+"</a></li>")	
 		}	
+		document.write("</ul>")
 	</script>
 </head>
 <body>
