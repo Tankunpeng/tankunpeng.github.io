@@ -8,6 +8,43 @@
     <title>Document</title>
 </head>
 <body>
+    <h1>开始</h1>
+    <section>
+        <h2>算法</h2>
+        <p>Two Sum</p>
+        <code>
+            /**
+            * @param {number[]} nums
+            * @param {number} target
+            * @return {number[]}
+            */
+            var twoSum = function(nums, target) {
+            const right = nums.map(n => target - n);
+            const result = right.map((r, i) => nums.indexOf(r)).filter(b => b !== -1);
+            if(result.length > 2) {
+            const half = target / 2 ;
+            return result.filter(r => nums[r] !== half)
+            }
+            if(result[0] === result[1]) {
+            result[1] = nums.indexOf(nums[result[0]], result[0] + 1);
+            }
 
+            return result;
+            };
+        </code>
+    </section>
+
+    <section>
+        <h2>reviews</h2>
+
+    </section>
+
+    <section>
+        <h2>tips</h2>
+    </section>
+
+    <section>
+        <h2>share</h2>
+    </section>
 </body>
 </html>
