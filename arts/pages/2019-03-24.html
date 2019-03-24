@@ -11,40 +11,27 @@
     <h1>开始</h1>
     <section>
         <h2>算法</h2>
-        <p>Two Sum</p>
-        <code>
-            /**
-            * @param {number[]} nums
-            * @param {number} target
-            * @return {number[]}
-            */
-            var twoSum = function(nums, target) {
-            const right = nums.map(n => target - n);
-            const result = right.map((r, i) => nums.indexOf(r)).filter(b => b !== -1);
-            if(result.length > 2) {
-            const half = target / 2 ;
-            return result.filter(r => nums[r] !== half)
-            }
-            if(result[0] === result[1]) {
-            result[1] = nums.indexOf(nums[result[0]], result[0] + 1);
-            }
-
-            return result;
-            };
-        </code>
+        <p><a href="https://leetcode.com/problems/two-sum/submissions/">LeetCode: Two Sum</a></p>
     </section>
-
     <section>
-        <h2>reviews</h2>
-
+        <h2>reviews: <a href="https://reactjs.org/docs/getting-started.html">React 文档</a></h2>
+        <p>阅读技术文档是学习一门技术的最好的途径，没有之一！</p>
+        <p>摘要：</p>
+        <p>JSX是扩展的js表达式！！！所以JSX中不可能有控制语句。</p>
+        <p>生命周期：constructor 中不能 setState， render 函数需要是纯的，副作用应该放在 ComponentDidMount 或者 ComponentDidUpdate</p>
+        <p>ref 与 key 会被特殊处理，不在 props 对象中</p>
+        <p>Portals 可以让子组件脱离当前的 DOM 树，但是不影响父子组件间的任何交互（事件传递、数据传递）</p>
+        <p>update 与 remount 的本质区别：update会保持状态。可以通过改变 key 强制 remount 组件</p>
+        <p>代码复用：hooks，  HOCs， props render， （mixins）</p>
+        <p>react哲学： 拆分视图组件，实现静态组件，确定应用state，确定State归属，添加反向数据流</p>
     </section>
-
     <section>
         <h2>tips</h2>
+        <p><a href="https://zh-hans.reactjs.org/docs/thinking-in-react.html">React组件开发模式</a></p>
     </section>
-
     <section>
         <h2>share</h2>
+        <p><a href="https://note.youdao.com/ynoteshare1/index.html?id=18cfb5cfd8e65b9991065cab250d3cc1&type=note">JS代码重构</a></p>
     </section>
 </body>
 </html>
