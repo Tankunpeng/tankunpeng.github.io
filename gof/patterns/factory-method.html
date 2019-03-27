@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Factory Method</title>
+</head>
+<body>
+    <h1>Factory Method</h1>
+    <p>定义一个用于创建对象（ConcreteProduct）的接口(Creator)，让子类(ConcreteCreator)决定实例化哪一个类。Factory Method使一个类的实例化延迟到其子类。</p>
+    <p>理解：使用另一个类（Creator）来负责处理Product的实例化工作。Creator子类对应具体的ConcreteCreator，其工厂方法执行实际的初始化工作。</p>
+    <code>
+        a = new aClass();   =>
+        b = new bClass();
+        a = b.createA();
+    </code>
+</body>
+</html>
