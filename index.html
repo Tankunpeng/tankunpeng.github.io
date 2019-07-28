@@ -26,6 +26,7 @@
 		
 		// 点击指定 DOM 时就给Service Worker 发送消息
 		document.getElementById('app-refresh').addEventListener('click', function () {
+			console.log('clicked')
 		    navigator.serviceWorker.controller && navigator.serviceWorker.controller.postMessage('sw.updatedone');
 		});
 		
