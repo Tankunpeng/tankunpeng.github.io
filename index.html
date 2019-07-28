@@ -22,12 +22,16 @@
 		    console.log('ServiceWorker registration failed: ', err);
 		});
 	    });
-	}
+	}	
 		
 		// 点击指定 DOM 时就给Service Worker 发送消息
 		document.getElementById('app-refresh').addEventListener('click', function () {
 			console.log('clicked')
-		    navigator.serviceWorker.controller && navigator.serviceWorker.controller.postMessage('sw.updatedone');
+		    navigator.serviceWorker.controller && navigator.serviceWorker.controller.postMessage({type: 'cache', data: [
+    '/',
+    '/gof/',
+    '/arts/'
+];});
 		});
 		
 		// 接受 service worker 消息
