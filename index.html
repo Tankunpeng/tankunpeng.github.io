@@ -28,6 +28,13 @@
 		document.getElementById('app-refresh').addEventListener('click', function () {
 		    navigator.serviceWorker.controller && navigator.serviceWorker.controller.postMessage('sw.updatedone');
 		});
+		
+		// 接受 service worker 消息
+		navigator.serviceWorker.addEventListener('message', function (event) {
+		    if (e.data === 'sw.update') {
+			// 此处可以操作页面的 DOM 元素啦
+		    }
+		});
     	</script>
 </body>
 </html>
