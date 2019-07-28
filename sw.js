@@ -78,4 +78,11 @@ self.addEventListener('fetch', event => {
 
 self.addEventListener('message', function (event) {
     console.log(event.data); // 输出：'sw.updatedone'
+    event.waitUntil(
+        caches.open('cache')
+            .then(function(cache) {
+                console.log('Opened cache');
+                return cache.addAll(event.data.data);
+            }).then(() => console.log('缓存成功', event.data.data))
+    );
 });
