@@ -9,6 +9,7 @@
 	<!--<a href="fe/IFE/ife.html">IFE展示</a>-->
 	<a href="arts/">ARTS 计划</a>
 	<a href="gof/">设计模式</a>
+	<div id="app-refresh">设计模式</div>
 	
 	<script>
 	if ('serviceWorker' in navigator) {
@@ -22,6 +23,11 @@
 		});
 	    });
 	}
+		
+		// 点击指定 DOM 时就给Service Worker 发送消息
+		document.getElementById('app-refresh').addEventListener('click', function () {
+		    navigator.serviceWorker.controller && navigator.serviceWorker.controller.postMessage('sw.updatedone');
+		});
     	</script>
 </body>
 </html>
