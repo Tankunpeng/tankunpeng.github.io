@@ -6,8 +6,8 @@ self.addEventListener('install', function(event) {
 var CACHE_NAME = 'my-site-cache-v1';
 var urlsToCache = [
     '/',
-    '/styles/main.css',
-    '/script/main.js'
+    '/gof',
+    '/arts'
 ];
 
 self.addEventListener('install', function(event) {
