@@ -83,16 +83,19 @@ self.addEventListener('message', function (event) {
             .then(function(cache) {
                 console.log('Opened cache');
                 return cache.addAll(event.data.data);
-            }).then(() => console.log('缓存成功', event.data.data))
-    );
-});
-
-self.clients.matchAll()
-    .then(function (clients) {
-        if (clients && clients.length) {
-            clients.forEach(function (client) {
-                // 发送字符串'sw.update'
-                client.postMessage({type: 'sw.cache.done'});
+            }).then(() => {
+                console.log('缓存成功', event.data.data))
+                self.clients.matchAll()
+                    .then(function (clients) {
+                        if (clients && clients.length) {
+                            clients.forEach(function (client) {
+                                // 发送字符串'sw.update'
+                                client.postMessage({type: 'sw.cache.done'});
             })
         }
     })
+            }
+    );
+});
+
+
