@@ -9,5 +9,19 @@
 	<!--<a href="fe/IFE/ife.html">IFE展示</a>-->
 	<a href="arts/">ARTS 计划</a>
 	<a href="gof/">设计模式</a>
+	
+	<script>
+	if ('serviceWorker' in navigator) {
+	    window.addEventListener('load', function() {
+		navigator.serviceWorker.register('/project/shuati-ielts/1.x/demo/sw.js').then(function(registration) {
+		    // Registration was successful
+		    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+		}, function(err) {
+		    // registration failed :(
+		    console.log('ServiceWorker registration failed: ', err);
+		});
+	    });
+	}
+    	</script>
 </body>
 </html>
