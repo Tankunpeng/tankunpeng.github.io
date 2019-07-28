@@ -1,4 +1,4 @@
-self.addEventListener('install', function(event) {
+self.addEventListener('install', function (event) {
     // Perform install steps
     console.log(13221312)
 });
@@ -10,27 +10,27 @@ var urlsToCache = [
     '/arts/'
 ];
 
-self.addEventListener('install', function(event) {
+self.addEventListener('install', function (event) {
     // Perform install steps
     event.waitUntil(
         caches.open(CACHE_NAME)
-            .then(function(cache) {
+            .then(function (cache) {
                 console.log('Opened cache');
                 return cache.addAll(urlsToCache);
             }).then(() => console.log('缓存成功'))
     );
 });
 
-self.addEventListener('install', function(event) {
+self.addEventListener('install', function (event) {
     // Perform install steps
     console.log(13221312)
 });
 
-self.addEventListener('fetch', function(event) {
+self.addEventListener('fetch', function (event) {
     console.log('fetch', event.request);
     event.respondWith(
         caches.match(event.request)
-            .then(function(response) {
+            .then(function (response) {
                     // Cache hit - return response
                     if (response) {
                         return response;
@@ -43,58 +43,57 @@ self.addEventListener('fetch', function(event) {
 
 
 self.addEventListener('fetch', event => {
-  if (event.request.mode === 'navigate') {
-    // See /web/fundamentals/getting-started/primers/async-functions
-    // for an async/await primer.
-    event.respondWith(async function() {
-      // Optional:Normalize the incoming URL by removing query parameters.
-      // Instead of https://example.com/page?key=value,
-      // use https://example.com/page when reading and writing to the cache.
-      // For static HTML documents, it's unlikely your query parameters will
-      // affect the HTML returned. But if you do use query parameters that
-      // uniquely determine your HTML, modify this code to retain them.
-      const normalizedUrl = new URL(event.request.url);
-      normalizedUrl.search = '';
+    if (event.request.mode === 'navigate') {
+        // See /web/fundamentals/getting-started/primers/async-functions
+        // for an async/await primer.
+        event.respondWith(async function () {
+            // Optional:Normalize the incoming URL by removing query parameters.
+            // Instead of https://example.com/page?key=value,
+            // use https://example.com/page when reading and writing to the cache.
+            // For static HTML documents, it's unlikely your query parameters will
+            // affect the HTML returned. But if you do use query parameters that
+            // uniquely determine your HTML, modify this code to retain them.
+            const normalizedUrl = new URL(event.request.url);
+            normalizedUrl.search = '';
 
-      // Create promises for both the network response,
-      // and a copy of the response that can be used in the cache.
-      const fetchResponseP = fetch(normalizedUrl);
-      const fetchResponseCloneP = fetchResponseP.then(r => r.clone());
+            // Create promises for both the network response,
+            // and a copy of the response that can be used in the cache.
+            const fetchResponseP = fetch(normalizedUrl);
+            const fetchResponseCloneP = fetchResponseP.then(r => r.clone());
 
-      // event.waitUntil() ensures that the service worker is kept alive
-      // long enough to complete the cache update.
-      event.waitUntil(async function() {
-        const cache = await caches.open('my-cache-name');
-        await cache.put(normalizedUrl, await fetchResponseCloneP);
-      }());
+            // event.waitUntil() ensures that the service worker is kept alive
+            // long enough to complete the cache update.
+            event.waitUntil(async function () {
+                const cache = await caches.open('my-cache-name');
+                await cache.put(normalizedUrl, await fetchResponseCloneP);
+            }());
 
-      // Prefer the cached response, falling back to the fetch response.
-      return (await caches.match(normalizedUrl)) || fetchResponseP;
-    }());
-  }
+            // Prefer the cached response, falling back to the fetch response.
+            return (await caches.match(normalizedUrl)) || fetchResponseP;
+        }());
+    }
 });
-
 
 
 self.addEventListener('message', function (event) {
     console.log(event.data); // 输出：'sw.updatedone'
     event.waitUntil(
         caches.open('cache')
-            .then(function(cache) {
+            .then(function (cache) {
                 console.log('Opened cache');
                 return cache.addAll(event.data.data);
             }).then(() => {
-                console.log('缓存成功', event.data.data)
-                self.clients.matchAll()
-                    .then(function (clients) {
-                        if (clients && clients.length) {
-                            clients.forEach(function (client) {
-                                // 发送字符串'sw.update'
-                                client.postMessage({type: 'sw.cache.done'});
-            })
+            console.log('缓存成功', event.data.data)
+            self.clients.matchAll()
+                .then(function (clients) {
+                    if (clients && clients.length) {
+                        clients.forEach(function (client) {
+                            // 发送字符串'sw.update'
+                            client.postMessage({type: 'sw.cache.done'});
+                        })
+                    }
+                })
         })
-    })
-            }
     );
 });
 
